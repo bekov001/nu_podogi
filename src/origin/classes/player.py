@@ -2,13 +2,16 @@ from itertools import product
 import time
 import pygame
 
-from src.origin.helpers import CELL_SIZE, ALL_SPRITES, load_image, PLAYER_SIZE
+from src.origin.helpers import CELL_SIZE, ALL_SPRITES, load_image, PLAYER_SIZE, \
+    PLAYER_GROUP, EGG_GROUP
 
 
 class Player(pygame.sprite.Sprite):
     """Вражеский танк"""
     def __init__(self, x, y):
         super().__init__(ALL_SPRITES)
+        self.score = 0
+        self.add(PLAYER_GROUP)
         self.health = 100
         self.image = pygame.transform.scale(load_image("player.png"),
                                            PLAYER_SIZE)
@@ -37,13 +40,12 @@ class Player(pygame.sprite.Sprite):
     #                 (210, 7))
 
     def update(self, *args):
-        CELL_SIZE = 15
-        data = zip(((CELL_SIZE, 0),
-                                       (-CELL_SIZE, 0),
-                                       (0, -CELL_SIZE), (0, CELL_SIZE)),
+        CELL_SIZE = 30
+        data = zip(((CELL_SIZE, 0), (-CELL_SIZE, 0),
+                                      ),
                    [(pygame.K_RIGHT, pygame.K_d),
-                    (pygame.K_LEFT, pygame.K_a), (pygame.K_UP, pygame.K_w),
-                    (pygame.K_DOWN, pygame.K_s)])
+                    (pygame.K_LEFT, pygame.K_a),
+                  ])
         # self.muzzle.get_muzzle(self.rect.center, pygame.mouse.get_pos())
         if args and args[0].type == pygame.KEYDOWN:
             for move, direction in data:
@@ -65,6 +67,8 @@ class Player(pygame.sprite.Sprite):
                 #                            pygame.mouse.get_pos())
                 #     self.current_angle = angle
                 #     self.healed = False
+        if pygame.sprite.spritecollideany(self, EGG_GROUP):
+            self.score += 1
         # if args:
         #     self.strike(args[0])
         # self.show_xp()

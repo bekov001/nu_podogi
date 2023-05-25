@@ -5,6 +5,7 @@ import pygame
 from pygame import font
 
 from src.origin.classes.egg import Egg
+from src.origin.classes.left_egg import LeftEgg
 from src.origin.helpers import ALL_SPRITES, load_image, SCREEN, EGG_GROUP, \
     EGG_SIZE, CHICKEN_SIZE
 
@@ -12,12 +13,12 @@ from src.origin.helpers import ALL_SPRITES, load_image, SCREEN, EGG_GROUP, \
 # CELL_SIZE = 50
 
 
-class Chicken(pygame.sprite.Sprite):
+class LeftChicken(pygame.sprite.Sprite):
     """Вражеский танк"""
     def __init__(self, x, y, diff):
         super().__init__(ALL_SPRITES)
         # self.add(EGG_GROUP)
-        self.image = pygame.transform.scale(load_image("chicken.webp"),
+        self.image = pygame.transform.scale(load_image("left_chicken.webp"),
                                             CHICKEN_SIZE)
         self.rect = pygame.Rect(x, y, *CHICKEN_SIZE)
         self.start = time.time()
@@ -43,7 +44,7 @@ class Chicken(pygame.sprite.Sprite):
         #                   self.rect.y - 10, CELL_SIZE - CELL_SIZE * xp, 5))
 
     def spawn(self):
-        egg = Egg(self.rect.x + EGG_SIZE[0], self.rect.y, self.diff/ 100000)
+        egg = LeftEgg(self.rect.x + EGG_SIZE[0], self.rect.y, self.diff / 100000)
 
     def update(self, *args):
         pass
@@ -51,7 +52,7 @@ class Chicken(pygame.sprite.Sprite):
         #     if time.time() - self.cd_time >= 3:
         #         self.delay = 3
         #         self.cd_time = 0
-        if time.time() - self.start >= random.randint(3, 60):
+        if time.time() - self.start >= random.randint(3, 50):
             self.spawn()
             self.start = time.time()
         # if self.health > 0:

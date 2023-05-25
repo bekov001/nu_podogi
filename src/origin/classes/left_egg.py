@@ -11,7 +11,7 @@ from src.origin.helpers import ALL_SPRITES, load_image, SCREEN, EGG_GROUP, \
 # CELL_SIZE = 50
 
 
-class Egg(pygame.sprite.Sprite):
+class LeftEgg(pygame.sprite.Sprite):
     """Вражеский танк"""
     def __init__(self, x, y, speed=0):
         super().__init__(ALL_SPRITES)
@@ -114,7 +114,7 @@ class Egg(pygame.sprite.Sprite):
         self.image = pygame.transform.rotate(self.def_image,
                                              (self.angular) % 360)
         if pygame.sprite.spritecollideany(self, STICK_GROUP):
-            self.rect = pygame.Rect(self.rect.x + 1, self.rect.y, *EGG_SIZE)
+            self.rect = pygame.Rect(self.rect.x - 1, self.rect.y, *EGG_SIZE)
         elif pygame.sprite.spritecollideany(self, PLAYER_GROUP):
             self.kill()
         else:
@@ -175,39 +175,3 @@ class Egg(pygame.sprite.Sprite):
         #     self.muzzle.kill()
         #     self.kill()
 
-
-if '__main__' == __name__:
-    pygame.init()
-
-    color = (255, 255, 255)
-    position = (0, 0)
-
-    # CREATING CANVAS
-    canvas = pygame.display.set_mode((500, 500))
-
-    # TITLE OF CANVAS
-    pygame.display.set_caption("Show Image")
-
-    # image = pygame.image.load("Screenshot.png")
-    egg = Egg(50, 50)
-    exit = False
-
-    while not exit:
-        # canvas.fill(color)
-        # canvas.blit(egg, dest=position)
-        started_time = time.time()
-        SCREEN.fill("black")
-        ALL_SPRITES.draw(SCREEN)
-        # SCREEN.blit(font.render(
-        #     'Time: ' + str(round(time.time() - started_time, 1)
-        #                    ), True, 'black'), (10, 20))
-        # SCREEN.blit(font.render(
-        #     'Cooldown: ' + str(round(self.player.delay * 0.3, 1)
-        #                        ) + ' sec', True, 'black'), (120, 20))
-        ALL_SPRITES.update()
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit = True
-
-        pygame.display.update()

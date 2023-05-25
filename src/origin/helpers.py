@@ -21,10 +21,8 @@ ALL_SPRITES = pygame.sprite.Group()
 TEXTURE_GROUP = pygame.sprite.Group()
 EGG_GROUP = pygame.sprite.Group()
 STICK_GROUP = pygame.sprite.Group()
-# SHIELD_BONUS_GROUP = pygame.sprite.Group()
-# TANK_GROUP = pygame.sprite.Group()
-# ENEMY_TANK_GROUP = pygame.sprite.Group()
-# COOLDOWN_BONUS_GROUP = pygame.sprite.Group()
+PLAYER_GROUP = pygame.sprite.Group()
+
 
 
 SCREEN = pygame.display.set_mode(SIZE)
