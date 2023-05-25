@@ -12,11 +12,15 @@ PLAYER = 3
 ENEMY = 4
 FPS = 60
 CELL_SIZE = 55
+EGG_SIZE = (30, 50)
+PLAYER_SIZE = (100, 200)
+CHICKEN_SIZE = (80, 100)
+STICK_SIZE = (300, 50)
 
 ALL_SPRITES = pygame.sprite.Group()
 TEXTURE_GROUP = pygame.sprite.Group()
 EGG_GROUP = pygame.sprite.Group()
-# HEAL_BONUS_GROUP = pygame.sprite.Group()
+STICK_GROUP = pygame.sprite.Group()
 # SHIELD_BONUS_GROUP = pygame.sprite.Group()
 # TANK_GROUP = pygame.sprite.Group()
 # ENEMY_TANK_GROUP = pygame.sprite.Group()

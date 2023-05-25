@@ -5,24 +5,22 @@ import pygame
 from pygame import font
 
 from src.origin.helpers import ALL_SPRITES, load_image, SCREEN, EGG_GROUP, \
-    EGG_SIZE, STICK_GROUP
+    EGG_SIZE, CHICKEN_SIZE, STICK_SIZE, STICK_GROUP
 
 
 # CELL_SIZE = 50
 
 
-class Egg(pygame.sprite.Sprite):
+class Stick(pygame.sprite.Sprite):
     """Вражеский танк"""
     def __init__(self, x, y):
         super().__init__(ALL_SPRITES)
-        self.add(EGG_GROUP)
+        self.add(STICK_GROUP)
         self.health = 100
-        self.image = pygame.transform.scale(load_image("egg.png"),
-                                            EGG_SIZE)
-        self.def_image = pygame.transform.scale(load_image("egg.png"),
-                                            EGG_SIZE)
-        self.rect = pygame.Rect(x, y, *EGG_SIZE)
-        self.angular = 0
+        self.image = pygame.transform.scale(load_image("stick.png"),
+                                            STICK_SIZE)
+        self.rect = pygame.Rect(x, y, *STICK_SIZE)
+
         # self.image = pygame.transform.scale(load_image("base/enemy_base.png"),
         #                                     (CELL_SIZE, CELL_SIZE))
         # self.music = music
@@ -92,30 +90,8 @@ class Egg(pygame.sprite.Sprite):
         #                              pygame.K_DOWN])
         # return dir
 
-    def check_collision(self):
-        if pygame.sprite.spritecollideany(self, STICK_GROUP):
-            self.rect = pygame.Rect(self.rect.x + 1, self.rect.y, *EGG_SIZE)
-            # if not self.healed:
-            #     self.health = 100
-            #     self.healed = True
-            #     self.music['boost'].play()
-        # if pygame.sprite.spritecollideany(self, COOLDOWN_BONUS_GROUP):
-        #     self.cd_time = time.time()
-        #     self.delay = CoolDown.cooldown_time
-        #     self.music['boost'].play()
-
     def update(self, *args):
-        # self.image = pygame.transform.scale(self.image, EGG_SIZE)
-        if self.rect.x <= 0:
-            self.kill()
-        # Rotate the image by any degree
-        self.angular += 1
-        self.image = pygame.transform.rotate(self.def_image, (self.angular) % 360)
-        if pygame.sprite.spritecollideany(self, STICK_GROUP):
-            self.rect = pygame.Rect(self.rect.x + 1, self.rect.y, *EGG_SIZE)
-        else:
-            self.rect = pygame.Rect(self.rect.x, self.rect.y + 1, *EGG_SIZE)
-        # self.rect = self.rect
+            pass
         # if self.cd_time:
         #     if time.time() - self.cd_time >= 3:
         #         self.delay = 3

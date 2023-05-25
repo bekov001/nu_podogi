@@ -4,10 +4,27 @@ from .texture_pack.brick import Brick
 from .enemy_tank import EnemyTank
 from .player_tank import PlayerTank
 from .texture_pack.iron import Iron
+from ..helpers import CELL_SIZE
 from ..helpers.variables import *
 
 
 class Field:
+    def __init__(self, width, height, music):
+        self.move = True
+        self.width = width
+        self.height = height
+        self.board = field
+        self.player = None
+
+        # значения по умолчанию
+        self.left = 5
+        self.top = 5
+        self.cell_size = CELL_SIZE
+
+        self.music = music
+
+
+class Field1:
     """Класс поля"""
     def __init__(self, width, height, music):
         self.move = True
